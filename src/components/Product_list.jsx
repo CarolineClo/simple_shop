@@ -1,12 +1,11 @@
 import Product from "./Product";
 
-function Product_list() {
+function Product_list(props) {
   return (
     <main className="ProductList">
-      <Product />
-      <Product />
-      <Product />
-      <Product />
+      {props.products.map((product) => (
+        <Product key={product.id} {...product} />
+      ))}
     </main>
   );
 }
