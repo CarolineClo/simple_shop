@@ -24,13 +24,19 @@ img {
   grid-template-columns: auto 200px;
 }
 .Header {
+  background-color: cornflowerblue;
   grid-column: 1 / -1;
 }
 .ProductList {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, 300px);
+  gap: 1rem;
 }
 .Product {
+  h2 {
+    height: 30px;
+    overflow: hidden;
+  }
 }
 .Basket {
 }
