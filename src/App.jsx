@@ -5,6 +5,21 @@ import Basket from "./components/Basket";
 
 function App() {
   const [products, setproducts] = useState([]);
+  const [cart, setcart] = useState([]);
+  function addToCart(data) {
+    if (cart.find((entry) => entry.id === data.id)) {
+      setcart((oldCart) =>
+        oldCart.map((entry) => {
+          if (entry.id !== data.id) {
+            return entry;
+          }
+          const copy = { ...entry };
+          copy.amount = copy.amount + 1;
+          return copy;
+        })
+      );
+    } else setcart((oldCart) => oldCart.concat({ ...data, amount: 1 }));
+  }
   useEffect(() => {
     async function getData() {
       const res = await fetch("https://kea-alt-del.dk/t7/api/products");
@@ -16,8 +31,8 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Product_list products={products} />
-      <Basket products={products} />
+      <Product_list products={products} addToCart={addToCart} />
+      <Basket products={products} cart={cart} />
     </div>
   );
 }
