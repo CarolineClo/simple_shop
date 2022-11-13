@@ -1,8 +1,23 @@
 import React from "react";
+import { insertOrder } from "../modules/db";
 
 function CheckoutForm() {
+  function submit(e) {
+    e.preventDefault();
+    insertOrder({
+      name: "Caroline",
+      email: "caroline@caroline",
+      address: "22 the someting",
+      basket: [
+        {
+          price: 2,
+        },
+        { price: 3 },
+      ],
+    });
+  }
   return (
-    <form className="form">
+    <form onSubmit={submit} className="form">
       <div className="form-control">
         <label htmlFor="form-name">Name</label>
         <input required type="text" name="name" id="form-name" />
